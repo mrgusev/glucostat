@@ -1,5 +1,4 @@
 angular.module('glucostat.controllers')
-    .controller('FoodCtrl', function($scope, $ionicModal, $ionicPopup, $filter, Insulin) {
-
-
+    .controller('FoodCtrl', function($scope, TimeListService) {
+        TimeListService('food', $scope);
     });

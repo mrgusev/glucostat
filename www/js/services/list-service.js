@@ -1,5 +1,5 @@
 angular.module('glucostat.services')
-    .factory('TimeListService', function ($ionicModal, $ionicPopup, $filter, ResourceFactory) {
+    .factory('TimeListService', function ($rootScope, $ionicModal, $ionicPopup, $filter, ResourceFactory) {
 
         return function (entity, scope) {
             var Resource = ResourceFactory.getCRUDService(entity);
@@ -11,29 +11,31 @@ angular.module('glucostat.services')
                 focusFirstInput: true
             });
 
-            scope.refreshData = function () {
-                Resource.getAll(function (data) {
-                    scope.items = [];
-                    var day;
-                    var currentDay;
-                    for (var i = 0; i < data.length; i++) {
-                        day = $filter('date')(data[i].time, 'EEE dd.MM');
-                        if (!_.contains(_.pluck(scope.items, 'day'), day)) {
-                            currentDay = {day: day, values: []};
-                            scope.items.push(currentDay);
+            $rootScope.refreshData = scope.refreshData = function () {
+                if($rootScope.isChacheLoaded){
+                    console.log('Fetching from cache: '+entity);
+                    Resource.getAll(function (data) {
+                        scope.items = [];
+                        var day;
+                        var currentDay;
+                        for (var i = 0; i < data.length; i++) {
+                            day = $filter('date')(data[i].time, 'EEE dd.MM');
+                            if (!_.contains(_.pluck(scope.items, 'day'), day)) {
+                                currentDay = {day: day, values: []};
+                                scope.items.push(currentDay);
+                            }
+                            currentDay.values.push(data[i]);
                         }
-                        currentDay.values.push(data[i]);
-                    }
-                })
+                    })
+                }
             };
 
             scope.refreshData();
 
             // Open our new modal
             scope.openItemModal = function () {
-                scope.newItem = {
-                    time: new Date()
-                };
+                scope.newItem = scope.newItemDefaults ? scope.newItemDefaults() : {time: new Date()};
+
                 scope.newItemModal.show().then(function () {
                     cordova.plugins.Keyboard.show();
                 });

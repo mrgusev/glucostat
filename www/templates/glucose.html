@@ -5,17 +5,17 @@
         </button>
         <h1 class="title">Glucose</h1>
         <!-- New Task button-->
-        <button class="button button-icon" ng-click="newGluc()">
+        <button class="button button-icon" ng-click="openItemModal()">
             <i class="icon ion-plus-round"></i>
         </button>
     </ion-header-bar>
     <ion-content>
         <ion-list    can-swipe="true">
-            <div class="item item-divider" ng-repeat-start="gluc in glucs">
-                {{gluc.day}}
+            <div class="item item-divider" ng-repeat-start="item in items">
+                {{item.day}}
             </div>
 
-            <ion-item ng-repeat="glucose in gluc.values" type="item-text-wrap">
+            <ion-item ng-repeat="glucose in item.values" type="item-text-wrap">
 
                 <h1 class="positive" style="display: inline">{{glucose.value}}</h1> <span class="item-note">{{glucose.time | date:'HH:mm'}}</span>
                 <ion-option-button class="button-assertive"

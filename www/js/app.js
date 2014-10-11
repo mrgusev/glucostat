@@ -19,7 +19,8 @@ angular.module('glucostat', [
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }])
 
-    .run(function ($ionicPlatform, $ionicSideMenuDelegate, $rootScope) {
+    .run(function ($ionicPlatform, $ionicSideMenuDelegate, $rootScope, CacheService) {
+
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -47,6 +48,11 @@ angular.module('glucostat', [
         $rootScope.toggleMenu = function(){
             $ionicSideMenuDelegate.toggleLeft();
         };
+        CacheService.preloadCache(function(){
+            $rootScope.isChacheLoaded = true;
+            console.log('All cache loaded.')
+            $rootScope.refreshData();
+        });
     })
 
     .config(function ($stateProvider, $urlRouterProvider) {
@@ -91,14 +97,14 @@ angular.module('glucostat', [
                 views: {
                     'tab-account': {
                         templateUrl: 'templates/food.html',
-                        controller: 'StatisticCtrl'
+                        controller: 'FoodCtrl'
                     }
                 }
             });
 
         $stateProvider.state('statistic', {
             url: '/statistic',
-            templateUrl: 'templates/tab-account.html',
+            templateUrl: 'templates/statistic.html',
             controller: 'StatisticCtrl'
         });
 

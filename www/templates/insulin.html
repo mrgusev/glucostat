@@ -5,22 +5,22 @@
         </button>
         <h1 class="title">Insulin</h1>
         <!-- New Task button-->
-        <button class="button button-icon" ng-click="newInsulin()">
+        <button class="button button-icon" ng-click="openItemModal()">
             <i class="icon ion-plus-round"></i>
         </button>
     </ion-header-bar>
     <ion-content>
         <ion-list can-swipe="true">
             <div class="item item-divider"
-                 ng-repeat-start="ins in insulins">
-                {{ins.day}}
+                 ng-repeat-start="item in items">
+                {{item.day}}
             </div>
 
-            <ion-item ng-repeat="insulin in ins.values" type="item-text-wrap">
+            <ion-item ng-repeat="insulin in item.values" type="item-text-wrap">
 
                 <h1 class="positive" style="display: inline">{{insulin.value}}</h1>&nbsp;
                 <span>{{insulin.type}}</span>
-                <span class="item-note">{{insulin.time | date:'medium'}}</span>
+                <span class="item-note">{{insulin.time | date:'HH:mm'}}</span>
                 <ion-option-button class="button-assertive"
                                    ng-click="delete(insulin)">
                     Delete

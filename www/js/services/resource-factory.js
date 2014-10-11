@@ -3,35 +3,39 @@ angular.module('glucostat.services')
         return{
             getCRUDService: function (entityName) {
                 return {
+                    updateCache: function(callback){
+                        $http.get(Config.serverHost + '/api/' + entityName + '/').success(function(data){
+                            var cache = {
+                                entities: data,
+                                time: new Date()
+                            };
+                            window.localStorage[entityName] = JSON.stringify(cache);
+                            console.log('Cache updated for: '+entityName);
+
+                            callback();
+                        });
+                    },
                     getAll: function (callback) {
-                        var cache = window.localStorage.cache ? JSON.parse(window.localStorage.cache) : {};
-                        if(cache && cache[entityName]){
-                            callback(cache[entityName].entities);
-                            $http.get(Config.serverHost + '/api/' + entityName + '/').success(function(data){
-                                cache[entityName] = {
-                                    entities: data,
-                                    time: new Date()
-                                };
-                                window.localStorage.cache = JSON.stringify(cache);
-                            });
-                        } else{
-                            $http.get(Config.serverHost + '/api/' + entityName + '/').success(function(data){
-                                cache[entityName] = {
-                                    entities: data,
-                                    time: new Date()
-                                };
-                                window.localStorage.cache = JSON.stringify(cache);
-                                callback(data);
-                            });
-                        }
+                        var cache = JSON.parse(window.localStorage[entityName]);
+                        callback(cache.entities);
                     },
                     getById: function (id, callback) {
                         $http.get(Config.serverHost + '/api/' + entityName + '/' + id).success(callback);
                     },
                     add: function (entity, callback) {
-                        $http.post(Config.serverHost + '/api/' + entityName + '/', entity).success(callback);
+                        $http.post(Config.serverHost + '/api/' + entityName + '/', entity).success(function(data){
+                            var cache =  JSON.parse(window.localStorage[entityName]);
+                            cache.entities.push(data);
+                            cache.entities = _.sortBy(cache.entities, function(item){return item.time}).reverse();
+                            window.localStorage[entityName] = JSON.stringify(cache);
+                            callback(data);
+                        });
                     },
                     'delete': function (id, callback) {
+                        var cache =  JSON.parse(window.localStorage[entityName]);
+                        var collection = cache.entities;
+                        collection.splice(collection.indexOf(_.findWhere(collection, {_id: id})), 1);
+                        window.localStorage[entityName] = JSON.stringify(cache);
                         $http.delete(Config.serverHost + '/api/' + entityName + '/' + id).success(callback)
                     },
                     update: function (entity, callback) {
