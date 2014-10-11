@@ -1,0 +1,40 @@
+/* Empty. Add your own CSS if you like */
+.popup-body .datetimepicker {
+    min-height: 221px;
+}
+.popup-body .datetimepicker table {
+    width: 100%;
+}
+/*
+ * Use ionic icons instead of bootstrap's glyphicons
+ * for arrows in the datetimepicker.
+ */
+.glyphicon {
+    vertical-align: top;
+    display: inline-block;
+    font-family: "Ionicons";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon:before {
+    vertical-align: top;
+    font-size: 32px;
+    line-height: 32px;
+    padding-right: 2px;
+    padding-left: 2px;
+    display: inline-block;
+    padding: 0 0 1px 0;
+}
+.glyphicon-arrow-right:before {
+    content: "\f10a";
+}
+.glyphicon-arrow-left:before{
+    content: "\f107";
+}

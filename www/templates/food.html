@@ -1,0 +1,35 @@
+<ion-view>
+    <ion-header-bar class="bar-light">
+        <button class="button button-icon" ng-click="toggleMenu()">
+            <i class="icon ion-navicon"></i>
+        </button>
+        <h1 class="title">Food</h1>
+        <!-- New Task button-->
+        <button class="button button-icon" ng-click="newInsulin()">
+            <i class="icon ion-plus-round"></i>
+        </button>
+    </ion-header-bar>
+    <ion-content>
+
+        <ion-list can-swipe="true">
+            <div class="item item-divider"
+                 ng-repeat-start="ins in insulins">
+                {{ins.day}}
+            </div>
+
+            <ion-item ng-repeat="insulin in ins.values" type="item-text-wrap">
+
+                <h1 class="positive" style="display: inline">{{insulin.value}}</h1>&nbsp;
+                <span>{{insulin.type}}</span>
+                <span class="item-note">{{insulin.time | date:'medium'}}</span>
+                <ion-option-button class="button-assertive"
+                                   ng-click="delete(insulin)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
+
+            <div ng-repeat-end></div>
+
+        </ion-list>
+    </ion-content>
+</ion-view>

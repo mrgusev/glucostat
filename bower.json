@@ -1,0 +1,12 @@
+{
+  "name": "glucostat-app",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.13"
+  },
+  "dependencies": {
+    "highcharts": "~4.0.4",
+    "highcharts-ng": "~0.0.7",
+    "moment": "~2.8.3"
+  }
+}
