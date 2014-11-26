@@ -5,13 +5,14 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('glucostat', [
+angular.module('glucostat.app', [
     'ionic',
     'highcharts-ng',
-    'glucostat.controllers',
-    'glucostat.services',
-    'glucostat.resources',
-    'ui.bootstrap.datetimepicker'])
+    'ui.bootstrap.datetimepicker',
+    'glucostat.app.home',
+    'glucostat.app.history',
+    'glucostat.app.statistic'
+])
 
     .config(['$httpProvider', function ($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
@@ -19,7 +20,7 @@ angular.module('glucostat', [
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }])
 
-    .run(function ($ionicPlatform, $ionicSideMenuDelegate, $rootScope, CacheService) {
+    .run(function ($ionicPlatform, $ionicSideMenuDelegate, $rootScope) {
 
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -45,71 +46,22 @@ angular.module('glucostat', [
                 }
             }
         });
+
         $rootScope.toggleMenu = function(){
             $ionicSideMenuDelegate.toggleLeft();
         };
-        CacheService.preloadCache(function(){
-            $rootScope.isChacheLoaded = true;
-            console.log('All cache loaded.')
-            $rootScope.refreshData();
-        });
+
+        //CacheService.preloadCache(function(){
+        //    $rootScope.isChacheLoaded = true;
+        //    console.log('All cache loaded.');
+        //    $rootScope.refreshData();
+        //});
     })
 
     .config(function ($stateProvider, $urlRouterProvider) {
 
-        // Ionic uses AngularUI Router which uses the concept of states
-        // Learn more here: https://github.com/angular-ui/ui-router
-        // Set up the various states which the app can be in.
-        // Each state's controller can be found in controllers.js
-        $stateProvider
-
-            // setup an abstract state for the tabs directive
-            .state('tab', {
-                url: "/tab",
-                abstract: true,
-                templateUrl: "templates/tabs.html"
-            })
-
-            // Each tab has its own nav history stack:
-
-            .state('tab.glucose', {
-                url: '/glucose',
-                views: {
-                    'tab-dash': {
-                        templateUrl: 'templates/glucose.html',
-                        controller: 'GlucoseCtrl'
-                    }
-                }
-            })
-
-            .state('tab.medicine', {
-                url: '/medicine',
-                views: {
-                    'tab-friends': {
-                        templateUrl: 'templates/insulin.html',
-                        controller: 'InsulinCtrl'
-                    }
-                }
-            })
-
-            .state('tab.food', {
-                url: '/food',
-                views: {
-                    'tab-account': {
-                        templateUrl: 'templates/food.html',
-                        controller: 'FoodCtrl'
-                    }
-                }
-            });
-
-        $stateProvider.state('statistic', {
-            url: '/statistic',
-            templateUrl: 'templates/statistic.html',
-            controller: 'StatisticCtrl'
-        });
-
         // if none of the above states are matched, use this as the fallback
-        $urlRouterProvider.otherwise('/tab/glucose');
+        $urlRouterProvider.otherwise('/home');
 
     });
 

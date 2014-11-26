@@ -1,14 +1,9 @@
-<ion-view>
-    <ion-header-bar class="bar-light">
-        <button class="button button-icon" ng-click="toggleMenu()">
-            <i class="icon ion-navicon"></i>
-        </button>
-        <h1 class="title">Glucose</h1>
-        <!-- New Task button-->
+<ion-view title="Glucose">
+    <ion-nav-buttons side="right">
         <button class="button button-icon" ng-click="openItemModal()">
             <i class="icon ion-plus-round"></i>
         </button>
-    </ion-header-bar>
+    </ion-nav-buttons>
     <ion-content>
         <ion-list    can-swipe="true">
             <div class="item item-divider" ng-repeat-start="item in items">

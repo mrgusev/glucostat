@@ -2,34 +2,27 @@
 
     <!-- Modal header bar -->
     <ion-header-bar class="bar-secondary">
-        <h1 class="title">New Insulin Usage</h1>
+        <h1 class="title">New Measure</h1>
         <button class="button button-clear button-positive" ng-click="closeItemModal()">Cancel</button>
     </ion-header-bar>
 
     <!-- Modal content area -->
     <ion-content>
 
-        <form >
+        <form>
             <div class="list" >
                 <label class="item item-input">
                     <span class="input-label">Value</span>
-                    <input type="number" ng-model="newItem.value" min="0" max="50">
+                    <input type="number" ng-model="newItem.value" min="0" max="30">
                 </label>
                 <label class="item item-input" ng-click="openDatePicker()">
                     <span class="input-label">Time</span>
                     {{newItem.time | date:'shortTime'}}
                     <!--<input type="text" ng-model="newUser.formattedBirthDate">-->
                 </label>
-                <label class="item item-input item-select">
-                    <span class="input-label">Type</span>
-                    <select ng-model="newItem.type">
-                        <option selected>short</option>
-                        <option>long</option>
-                    </select>
-                </label>
             </div>
             <div class="padding">
-                <button  ng-click="createNewItem()" class="button button-block button-positive">Add Insulin Usage</button>
+                <button  ng-click="createNewItem()" class="button button-block button-positive">Add Measure</button>
             </div>
         </form>
 

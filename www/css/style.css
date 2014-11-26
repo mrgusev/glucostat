@@ -5,6 +5,28 @@
 .popup-body .datetimepicker table {
     width: 100%;
 }
+.text-muted{
+    color: #aaa;
+}
+.text-small{
+    font-size: 14px;
+}
+.no-margin{
+    margin: 0;
+}
+
+.button-circle{
+    width: 84px;
+    height: 84px;
+    border-radius: 100%;
+}
+ /*.button-large.icon:before, .button-large.icon-left:before, .button-large.icon-right:before {*/
+    /*font-size: 32px;*/
+    /*line-height: 51px;*/
+    /*width: 100%;*/
+    /*text-align: center;*/
+    /*padding: 0;*/
+/*}*/
 /*
  * Use ionic icons instead of bootstrap's glyphicons
  * for arrows in the datetimepicker.

@@ -61,7 +61,7 @@ angular.module('glucostat.controllers')
 //                this.showResetZoom();
             }
         };
-        Glucose.getAll(function (data) {
+        Glucose.getStatistic(function (data) {
             var seriesData = [];
             data.reverse().forEach(function(item){
                 seriesData.push([( new Date(item.time)).getTime(), item.value]);

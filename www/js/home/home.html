@@ -1,0 +1,46 @@
+<ion-view title="Home">
+    <ion-nav-buttons side="right">
+        <!--<button class="button button-icon" ng-click="openItemModal()">-->
+        <!--<i class="icon ion-plus-round"></i>-->
+        <!--</button>-->
+    </ion-nav-buttons>
+    <ion-content class="padding">
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-center ">
+                            <h1 class="balanced no-margin">{{averageGlucose.avgGlucose}}</h1>
+                            <span class="text-muted text-small">Avg. glucose</span></div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center ">
+                            <h1 class="calm no-margin">{{averageGlucose.totalGlucs}}</h1>
+                            <span class="text-muted text-small">Total readings</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3 class="text-center positive">Add values</h3>
+
+        <div class="row">
+            <div class="col">
+                <button ng-click="openAddModal('glucose')"
+                        class="button button-large button-positive icon button-circle ion-waterdrop"></button>
+            </div>
+            <div class="col">
+                <button ng-click="openAddModal('medication')"
+                        class="button button-large icon button-circle button-calm  ion-medkit"></button>
+            </div>
+
+            <div class="col">
+                <button ng-click="openAddModal('meal')"
+                        class="button button-large icon button-circle button-balanced  ion-fork"></button>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-view title="History">
+    <ion-nav-buttons>
+
+    </ion-nav-buttons>
+    <ion-content>
+
+        <ion-list    can-swipe="true">
+            <div class="item item-divider" ng-repeat-start="item in items">
+                {{item.day}}
+            </div>
+
+            <ion-item class="item-icon-left" ng-repeat="log in item.logs" type="item-text-wrap">
+                <ng-include src="'js/history/list-item-' + log.type + '.html'"></ng-include>
+                <ion-option-button class="button-assertive"
+                                   ng-click="deleteItem(log)">
+                    Delete
+                </ion-option-button>
+            </ion-item>
+
+            <div ng-repeat-end></div>
+
+        </ion-list>
+    </ion-content>
+</ion-view>

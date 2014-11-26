@@ -1,0 +1,30 @@
+<ion-view title="Carbs Calculator">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon" ng-click="openItemModal()">
+            <i class="icon ion-plus-round"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar bar-subheader item-input-inset">
+        <label class="item-input-wrapper">
+            <i class="icon ion-android-search placeholder-icon"></i>
+            <input  id="searchKey" type="search" placeholder="Search" ng-model="searchQuery" autocorrect="off">
+            <!--<i ng-show="searchQuery" class="button button-clear" ng-click="alert(1)">X</i> -->
+        </label>
+    </ion-header-bar>
+
+    <ion-content>
+        <ion-list ng-show="searchResults.length">
+            <div class="item item-divider">
+                Search Results
+            </div>
+
+            <ion-item ng-repeat="food in searchResults">
+                <h2 class="positive">{{food.name}}</h2>
+                <span>{{food.category}}</span>
+                <!--<span class="item-note">{{meal.time | date:'HH:mm'}}</span>-->
+            </ion-item>
+
+
+        </ion-list>
+    </ion-content>
+</ion-view>

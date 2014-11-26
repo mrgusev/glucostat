@@ -2,6 +2,7 @@ angular.module('glucostat.services')
     .factory('TimeListService', function ($rootScope, $ionicModal, $ionicPopup, $filter, ResourceFactory) {
 
         return function (entity, scope) {
+            console.log('set up list service for: '+entity);
             var Resource = ResourceFactory.getCRUDService(entity);
             $ionicModal.fromTemplateUrl('templates/' + entity + '-add-modal.html', function (modal) {
                 scope.newItemModal = modal;

@@ -6,6 +6,8 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var inject = require('gulp-inject');
+var angularFilesort = require('gulp-angular-filesort')
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -47,4 +49,15 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+
+
+gulp.task('inject-js', [], function(){
+  var target = gulp.src('./www/index.html');
+  var appSources = gulp.src(['./www/js/**/*.js']).pipe(angularFilesort());
+
+  return target
+      .pipe(inject(appSources,  {name: 'app', relative: true}))
+      .pipe(gulp.dest('./www/'));
 });

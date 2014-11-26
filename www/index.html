@@ -27,19 +27,39 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/config.js"></script>
+
+
+    <!-- app:js -->
+    <script src="js/common/resources/resources.module.js"></script>
+    <script src="js/common/resources/log.js"></script>
+    <script src="js/statistic/statistic.module.js"></script>
+    <script src="js/settings/settings.module.js"></script>
+    <script src="js/services/services.js"></script>
+    <script src="js/services/settings.js"></script>
+    <script src="js/services/resources.js"></script>
+    <script src="js/services/resource-factory.js"></script>
+    <script src="js/services/list-service.js"></script>
+    <script src="js/medicament/medicament.module.js"></script>
+    <script src="js/log/log.module.js"></script>
+    <script src="js/home/home.module.js"></script>
+    <script src="js/history/history.module.js"></script>
+    <script src="js/glucose/glucose.module.js"></script>
+    <script src="js/food/food.module.js"></script>
+    <script src="js/filters/filters.js"></script>
+    <script src="js/exercise/exercise.module.js"></script>
     <script src="js/controllers/controllers.js"></script>
+    <script src="js/controllers/statistic.js"></script>
     <script src="js/controllers/insulin.js"></script>
     <script src="js/controllers/glucose.js"></script>
     <script src="js/controllers/food.js"></script>
-    <script src="js/controllers/statistic.js"></script>
-    <script src="js/services/services.js"></script>
-    <script src="js/services/list-service.js"></script>
-    <script src="js/services/resource-factory.js"></script>
-    <script src="js/services/resources.js"></script>
+    <script src="js/controllers/calculator.js"></script>
+    <script src="js/common/config.module.js"></script>
+    <script src="js/calculator/calculator.module.js"></script>
+    <script src="js/app.js"></script>
+    <!-- endinject -->
+
 </head>
-<body ng-app="glucostat" animation="slide-left-right-ios7">
+<body ng-app="glucostat.app" animation="slide-left-right-ios7">
 <!--
   The nav bar that will be updated as we navigate between views.
 -->
@@ -50,7 +70,15 @@
 -->
 <ion-side-menus>
     <ion-side-menu-content>
-        <ion-nav-view></ion-nav-view>
+        <ion-nav-bar class="nav-title-slide-full">
+
+            <button class="button button-icon" ng-click="toggleMenu()">
+                <i class="icon ion-navicon"></i>
+            </button>
+            <!--<ion-nav-back-button class="button-icon ion-arrow-left-c">-->
+            <!--</ion-nav-back-button>-->
+        </ion-nav-bar>
+        <ion-nav-view animation="fade-explode"></ion-nav-view>
     </ion-side-menu-content>
     <ion-side-menu side="left">
         <ion-header-bar>
@@ -60,15 +88,23 @@
         </ion-header-bar>
         <ion-content scroll="false">
             <ion-list>
-                <a menu-close class="item item-icon-left" ui-sref="tab.glucose">
-                    <i class="icon ion-plus-round positive"></i>
-                    Input Data
+                <a menu-close nav-clear class="item item-icon-left" ui-sref="home">
+                    <i class="icon ion-home positive"></i>
+                    Home
                 </a>
-                <a menu-close class="item item-icon-left" ui-sref="statistic">
+                <a menu-close nav-clear class="item item-icon-left" ui-sref="history">
+                    <i class="icon ion-clipboard positive"></i>
+                    History
+                </a>
+                <a menu-close nav-clear class="item item-icon-left" ui-sref="statistic">
                     <i class="icon ion-stats-bars positive"></i>
                     Statistic
                 </a>
-                <a menu-close class="item item-icon-left" href="">
+                <a menu-close nav-clear class="item item-icon-left" ui-sref="calculator">
+                    <i class="icon ion-ios7-calculator positive"></i>
+                    Carbs Calculator
+                </a>
+                <a menu-close nav-clear class="item item-icon-left" ui-sref="settings">
                     <i class="icon ion-ios7-gear positive"></i>
                     Settings
                 </a>

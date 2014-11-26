@@ -1,0 +1,35 @@
+<ion-view title="Food">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon" ng-click="openItemModal()">
+            <i class="icon ion-plus-round"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-header-bar class="bar bar-subheader item-input-inset">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios7-search placeholder-icon"></i>
+            <input id="searchKey" type="search" placeholder="Search" ng-model="search.$" autocorrect="off">
+            <button class="button button-clear" ng-click="clearSearch()">X</button>
+        </label>
+        <button class="button button-light" ng-click="search()">Search</button>
+    </ion-header-bar>
+
+    <ion-content>
+        <ion-list>
+            <div class="item item-divider"
+                 ng-repeat-start="item in items">
+                {{item.day}}
+            </div>
+
+            <a class="item" ui-sref="tab.food-details({id: meal._id})" ng-repeat="meal in item.values"
+               type="item-text-wrap">
+
+                <h1 class="positive" style="display: inline">{{meal.carbs | breadUnit}}</h1>&nbsp;
+                <span>{{meal.type}}</span>
+                <span class="item-note">{{meal.time | date:'HH:mm'}}</span>
+            </a>
+
+            <div ng-repeat-end></div>
+
+        </ion-list>
+    </ion-content>
+</ion-view>
