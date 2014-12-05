@@ -1,0 +1,34 @@
+<ion-view title="Statistic">
+    <ion-nav-buttons side="right">
+    </ion-nav-buttons>
+    <ion-content class="">
+        <div class="bar-subheader">
+            <div class="button-bar">
+                <div class="button" ng-click="setFilter('d')" ng-class="{'button-positive': filter == 'd'}">Day</div>
+                <div class="button" ng-click="setFilter('w')" ng-class="{'button-positive': filter == 'w'}">Week</div>
+                <div class="button" ng-click="setFilter('M')" ng-class="{'button-positive': filter == 'M'}">Month</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-67">
+                <highchart config="chartConfig"></highchart>
+            </div>
+            <div class="col">
+                <h2 class="no-margin balanced">{{normal}}%</h2>
+                <span class="">In range</span>
+
+                <h2 class="no-margin royal">{{high}}%</h2>
+                <span class="">High</span>
+
+                <h2 class="no-margin assertive">{{low}}%</h2>
+                <span class="">Low</span>
+            </div>
+        </div>
+        <div class="">
+            <div class="text-center">
+                <h2 class="">Total: {{total}}</h2></div>
+        </div>
+
+    </ion-content>
+</ion-view>

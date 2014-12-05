@@ -6,3 +6,5 @@ platforms/
 plugins/
 www/lib
 .idea
+Glucostat.apk
+my-release-key.keystore

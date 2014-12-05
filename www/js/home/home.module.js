@@ -10,7 +10,11 @@ angular.module('glucostat.app.home', [
     })
     .controller('HomeCtrl', function ($scope, $ionicModal, $ionicPopup, $timeout, Log) {
 
-        Log.getAverageGlucose(function (data) {
+        $scope.averageGlucose = {
+            avgGlucose: '-',
+            totalGlucs: '-'
+        };
+        Log.getAverageGlucose('w', function (data) {
             data.avgGlucose = Math.round(data.avgGlucose * 10) / 10;
             $scope.averageGlucose = data;
         });
@@ -23,7 +27,7 @@ angular.module('glucostat.app.home', [
                 $scope.newItem.type = type;
                 $scope.newItemModal.show().then(function () {
                     $timeout(function(){
-                        //cordova.plugins.Keyboard.show();
+                        cordova.plugins.Keyboard.show();
                     });
                 });
             }, {
@@ -34,11 +38,12 @@ angular.module('glucostat.app.home', [
         };
 
         $scope.closeItemModal = function () {
-            $scope.newItemModal.hide();
+            $scope.newItemModal.hide().then(function(){
+                cordova.plugins.Keyboard.close();
+            });
         };
 
         $scope.createNewItem = function () {
-            console.log(JSON.stringify($scope.newItem));
             Log.add($scope.newItem, function (data) {
                 $scope.newItemModal.hide();
             });

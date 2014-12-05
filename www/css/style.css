@@ -19,6 +19,8 @@
     width: 84px;
     height: 84px;
     border-radius: 100%;
+    margin: 0 auto;
+    display: block;
 }
  /*.button-large.icon:before, .button-large.icon-left:before, .button-large.icon-right:before {*/
     /*font-size: 32px;*/
